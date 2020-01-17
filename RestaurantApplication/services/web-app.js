@@ -89,6 +89,11 @@ seneca.ready(() => {
     return response.render('login')
   })
 
+  app.get("/users/logout", (request, response, next) => {
+    request.logout();
+    response.redirect("/");
+  });
+
   app.get('/cart', ensureAuthenticated, function (request, response) {
 
     var username = request.userContext.userinfo.preferred_username;
@@ -102,11 +107,6 @@ seneca.ready(() => {
       });
     });
   })
-
-  app.get("/users/logout", (request, response, next) => {
-    request.logout();
-    response.redirect("/");
-  });
 
   app.post('/cart', ensureAuthenticated, function (request, response) {
 
@@ -124,7 +124,9 @@ seneca.ready(() => {
             userId: username,
             restaurantName: val.restaurant.name,
             itemName: val.item.name,
-            itemPrice: val.item.price
+            itemPrice: val.item.price,
+            itemId: val.item.itemId,
+            restaurantId: val.item.restaurantId
           }, function (err, msg) {
             return response.send(msg).statusCode(200)
           });

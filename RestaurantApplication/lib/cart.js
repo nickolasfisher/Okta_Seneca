@@ -21,7 +21,8 @@ module.exports = function (options) {
 
         cart.items.push(
             {
-                item: args.item,
+                itemId: args.itemId,
+                restaurantId: args.restaurantId,
                 restaurantName: args.restaurantName,
                 itemName: args.itemName,
                 itemPrice: args.itemPrice
@@ -37,11 +38,13 @@ module.exports = function (options) {
         var cart = getCart(args.userId);
 
         var item = cart.items.filter(function (obj, idx) {
-            return obj.item.itemId === args.itemId && obj.restaurantId == args.restaurantId;
+            return obj.itemId == args.itemId && obj.restaurantId == args.restaurantId;
         })[0];
 
         if (item)
             cart.items.splice(item, 1);
+
+        cart.total -= item.itemPrice;
 
         return done(null, cart);
     }
@@ -54,6 +57,7 @@ module.exports = function (options) {
         }
 
         cart.items = [];
+        cart.total = 0.00;
 
         done(null, cart);
     }
