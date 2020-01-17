@@ -1,0 +1,24 @@
+{
+  "name": "restaurant-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@okta/oidc-middleware": "^2.0.0",
+    "@okta/okta-sdk-nodejs": "^3.1.0",
+    "body-parser": "^1.11.0",
+    "express": "^4.11.2",
+    "express-session": "^1.17.0",
+    "pug": "^2.0.4",
+    "seneca": "^3.17.0"
+  }
+}

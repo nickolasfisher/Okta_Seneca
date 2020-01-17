@@ -103,6 +103,11 @@ seneca.ready(() => {
     });
   })
 
+  app.get("/users/logout", (request, response, next) => {
+    request.logout();
+    response.redirect("/");
+  });
+
   app.post('/cart', ensureAuthenticated, function (request, response) {
 
     var username = request.userContext.userinfo.preferred_username;
